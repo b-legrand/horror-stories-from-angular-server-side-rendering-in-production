@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1280"
+   height="720"
+   viewBox="0 0 1280 720"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="critters-viewport-the-fold.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="0.49063581"
+     inkscape:cx="437.18782"
+     inkscape:cy="429.03514"
+     inkscape:window-width="1900"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5">
+    <inkscape:grid
+       type="xygrid"
+       id="grid238" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <rect
+     style="fill:#1e1e2e;stroke-width:7.55906;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10"
+     id="background"
+     width="1280"
+     height="720"
+     x="0"
+     y="0"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1" />
+  <rect
+     style="fill:#11111b;stroke:#fab387;stroke-width:3;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none"
+     id="rect455"
+     width="260"
+     height="100"
+     x="168.26114"
+     y="93.010971" />
+  <rect
+     style="fill:#181825;stroke:#cdd6f4;stroke-width:3"
+     id="rect3742"
+     width="455.58365"
+     height="644.17688"
+     x="63.347725"
+     y="32.373837" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="76.952232"
+     y="70.207474"
+     id="text3850"><tspan
+       sodipodi:role="line"
+       id="tspan3848"
+       x="76.952232"
+       y="70.207474"
+       style="fill:#cdd6f4">My Web Page</tspan></text>
+  <rect
+     style="fill:#181825;stroke:#cdd6f4;stroke-width:3"
+     id="rect3904"
+     width="411.16022"
+     height="160.90422"
+     x="82.512039"
+     y="96.196548" />
+  <rect
+     style="fill:#181825;stroke:#cdd6f4;stroke-width:3"
+     id="rect3958"
+     width="272.75522"
+     height="370.3367"
+     x="85.506927"
+     y="280.13992" />
+  <rect
+     style="fill:#181825;stroke:#cdd6f4;stroke-width:3"
+     id="rect3960"
+     width="116.30582"
+     height="370.03671"
+     x="377.15146"
+     y="281.60489" />
+  <path
+     style="fill:none;stroke:#f38ba8;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+     d="m 37.02867,273.81517 530.93093,-2.64491 220.70708,-1.80493"
+     id="path4471"
+     sodipodi:nodetypes="ccc" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="808.26099"
+     y="280.66492"
+     id="text4475"><tspan
+       sodipodi:role="line"
+       id="tspan4473"
+       x="808.26099"
+       y="280.66492"
+       style="fill:#f38ba8">The &quot;fold&quot;</tspan></text>
+  <path
+     style="fill:none;stroke:#a6e3a1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+     d="m 530.80094,32.003851 c 124.20812,0.547986 73.73567,96.088419 186.00447,105.576459 -100.15325,6.44353 -88.78244,111.26805 -185.01537,115.6602"
+     id="path4595"
+     sodipodi:nodetypes="ccc" />
+  <path
+     style="fill:none;stroke:#74c7ec;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+     d="m 530.76594,288.84463 c 180.14357,1.86097 54.63584,188.92007 224.98438,188.49217 -187.33037,4.23797 -21.75739,193.97654 -227.4193,194.57407"
+     id="path4597"
+     sodipodi:nodetypes="ccc" />
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:40px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:'Poppins Bold'"
+     x="776.4671"
+     y="493.83725"
+     id="text4601"><tspan
+       sodipodi:role="line"
+       id="tspan4599"
+       x="776.4671"
+       y="493.83725"
+       style="font-size:40px;fill:#89b4fa">NON-CRITICAL CSS</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:40px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:'Poppins Bold'"
+     x="777.83704"
+     y="149.75462"
+     id="text4605"><tspan
+       sodipodi:role="line"
+       id="tspan4603"
+       x="777.83704"
+       y="149.75462"
+       style="font-size:40px;fill:#a6e3a1;stroke:none">CRITICAL CSS</tspan></text>
+</svg>

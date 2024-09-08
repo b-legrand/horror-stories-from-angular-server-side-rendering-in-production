@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1280"
+   height="720"
+   viewBox="0 0 1280 720"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="perf-obs-baseline.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="0.78127806"
+     inkscape:cx="627.81745"
+     inkscape:cy="407.66536"
+     inkscape:window-width="1900"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5">
+    <inkscape:grid
+       type="xygrid"
+       id="grid238" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <rect
+     style="fill:#1e1e2e;stroke-width:7.55906;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10"
+     id="background"
+     width="1280"
+     height="720"
+     x="0"
+     y="0"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1" />
+  <rect
+     style="fill:#181825;stroke:#cdd6f4;stroke-width:3.77953"
+     id="rect980"
+     width="1082.6812"
+     height="237.10149"
+     x="99.341431"
+     y="421.60486" />
+  <rect
+     style="fill:#181825;stroke:#cdd6f4;stroke-width:3.77953"
+     id="rect980-7"
+     width="1082.6812"
+     height="237.10149"
+     x="99.101425"
+     y="102.7513" />
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:40px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:'Poppins Bold'"
+     x="-574.76538"
+     y="75.609268"
+     id="text1036"
+     transform="rotate(-90)"><tspan
+       sodipodi:role="line"
+       id="tspan1034"
+       x="-574.76538"
+       y="75.609268"
+       style="fill:#cdd6f4">CPU</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:40px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:'Poppins Bold'"
+     x="-260.80713"
+     y="70.632973"
+     id="text1036-3"
+     transform="rotate(-90)"><tspan
+       sodipodi:role="line"
+       x="-260.80713"
+       y="70.632973"
+       style="fill:#cdd6f4"
+       id="tspan1123">MEM</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:40px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="621.44769"
+     y="51.593147"
+     id="text1158"><tspan
+       sodipodi:role="line"
+       id="tspan1156"
+       x="621.44769"
+       y="51.593147"
+       style="fill:#a6e3a1">deployment</tspan></text>
+  <path
+     style="fill:none;stroke:#a6e3a1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
+     d="M 579.99417,682.45549 V 59.322869 l 36.76301,-21.225132"
+     id="path1261" />
+</svg>
