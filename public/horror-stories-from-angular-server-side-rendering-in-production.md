@@ -59,11 +59,12 @@ SSR with Angular is a lot better now
 - server side rendering
 - window is undefined
 - memory leaks
+- setTimeout
 - transfer state
 - inline critical css
 ---
 - i am gonna talk about these subjects, and share some horror stories i've seen in production
-- let's dive in
+- let's dive in, but first
 
 
 
@@ -78,7 +79,7 @@ SSR with Angular is a lot better now
 
 #### By default, angular is a client side framework
 - "Single Page Application"
-<!-- todo : add a schema -->
+<img src="schemas/intro-spa.svg" />
 ---
 - Angular is a client side framework, it means that the HTML is created on the client side, in the browser.
 - if you do nothing
@@ -86,8 +87,7 @@ SSR with Angular is a lot better now
 
 #### SPA : ask the server for a page
 
-<img src="schemas/intro-client-side-rendering.drawio.svg"/>
-<!-- todo : bigger schema -->
+<img src="schemas/intro-client-side-rendering.svg"/>
 
 
 ```html 
@@ -111,8 +111,7 @@ SSR with Angular is a lot better now
 
 #### SSR : ask the server for the HTML
 
-<img src="schemas/intro-server-side-rendering.drawio.svg"/>
-<!-- todo : bigger schema -->
+<img src="schemas/intro-server-side-rendering.svg"/>
 ---
 - on server side rendering, you do not need to wait for the javascript to load to see the content.
 - obviously this is still happening, but the HTML is already there.
@@ -132,7 +131,7 @@ SSR with Angular is a lot better now
 - Write once, run anywhere
 
 
-#### Disadvantages of SSR
+#### Inconvenients of SSR
 - not for every app.<!-- .element: class="fragment" -->
 - can be tricky, has some footguns.<!-- .element: class="fragment" -->
 - paradigm change, not your typical SPA<!-- .element: class="fragment" -->
@@ -155,7 +154,7 @@ Node.js is based on the V8 engine, the same engine that powers Chrome. But runni
 
 | Browser | Server |
 | - | - |
-| window, navigator, geolocation, device, etc... | file system, databases, network, etc... |
+| window, navigator, geolocation, device, etc... | file system, network, OS APIs, etc... |
 ---
 - On the browser side you will have acess to API that are not available on the server, and vice-versa
 - window, document, navigator, geolocation, device => browser only
@@ -173,11 +172,14 @@ ng add @angular/ssr
 
 #### In your Angular app :
 
+
 ##### Before
 
 ```diff
  .
  ├── src/
+ │   ├── app/
+ │   │   └── app.config.ts
  │   └── main.ts
  ├── tsconfig.json
  └── tsconfig.app.json
@@ -190,6 +192,9 @@ ng add @angular/ssr
 ```diff
  .
  ├── src/
+ │   ├── app/
+ │   │   ├── app.config.ts
++│   │   └── app.config.server.ts
  │   ├── main.ts
 +│   └── main.server.ts
 +├── server.ts
@@ -375,10 +380,11 @@ export const ASSETS_FETCHER = new InjectionToken<
     AssetsFetcher>('ASSETS_FETCHER');
 ```
 ---
+- Since we cannot inject an interface directly, we need to use an InjectionToken
 
 
 `app.config.ts`
-```typescript
+```typescript [|6-9]
 import { ASSETS_FETCHER } from './assets-fetcher';
 import { AssetsFetcherBrowserService } from './assets-fetcher-browser.service';
 
@@ -454,12 +460,12 @@ This was how we deployed "normally", when everything was fine.
 In reality we had two virtual machines for.
 
 
-
 #### What happened ?
 
-
 <img src="schemas/perf-obs-out-of-memory.svg"/>
-
+---
+- we released a new version and BOOM.
+- this, kids, is a memory leak
 
 
 #### What was the root cause ?
@@ -482,15 +488,21 @@ export class MyService {
 - no unsubscription
 
 
-#### what happened / what is the issue
-- the Observer pattern
-- schema / link between objects
+#### What is the issue
+- the Observer pattern leaks
+<!-- TODO: schema / link between objects -->
+
+
+#### Other source of memory leaks
+- addEventListener()
+- removeEventListener()<!-- .element: class="fragment" -->
 
 
 #### Solutions ?
-- always unsubscribe
+- __always__ unsubscribe
 - do not use the constructor to initialize observables
-- use "init" methods
+- use "init" methods instead
+- avoid `providedIn: root` when you can.
 
 
 
@@ -500,7 +512,13 @@ export class MyService {
 
 
 #### Context ?
-- "please help fix the SSR performance"
+- consulting on a new project
+- first task: "please fix the SSR performance"
+
+
+#### What was happening ?
+<img src="schemas/timeout-20-seconds.svg"/>
+---
 - every request was taking 10 seconds to respond<!-- .element: class="fragment" -->
 
 
@@ -508,7 +526,7 @@ export class MyService {
 - investigating... 🕵️ 
 - found this code<!-- .element: class="fragment" -->
 ---
-- add logs, add performance metrics
+- add logs, add performance metrics for every request.
 
 
 ```typescript [|3|4-6|9-25]
@@ -539,22 +557,34 @@ class MyService {
   }
 }
 ```
+---
+- first suspition: retry + sleep, this smells bad
+- and then what was retried ? a communication system with an iframe
+- this method was called on an APP_INITIALIZER, so it was blocking the app initialization for every request
 
 
 #### What was the issue ?
 - zone.js 🫠 
 - will wait for any callback / promise / microtask to finish<!-- .element: class="fragment" -->
-- articially delays / blocking the event loop<!-- .element: class="fragment" -->
+- artificial delays<!-- .element: class="fragment" -->
+
+
+#### Also
+- There is no `window` on the server.
+- There is no `iframe` either.
+---
+This code was totally useless on the server
 
 
 #### Solutions
-- do not use `setTimeout` / `setInterval` / delays in SSR
-- only in browser mode
+- avoid using `setTimeout` / `setInterval` in SSR
+- (same thing for rxjs `delay` / `interval` / timing operators)
+- condition them to run only in browser mode<!-- .element: class="fragment" -->
 
 
 #### Takeways 
-- be careful whit timeout and intervals
-- avoid accidentaly blocking the event loop
+- be careful with timeouts and intervals
+- avoid artificially delaying the server response times.
 
 
 
@@ -564,10 +594,12 @@ class MyService {
 
 
 #### Context ?
-- an app that fetches json data from api to render 
+- an app that fetches json data from an api to render 
+- pretty standard stuff<!-- .element: class="fragment" -->
 
 
-#### what is the issue ?
+#### What is the issue ?
+- new deployment.
 - put twice the load
 - cache the html render
 - but it is not he same client side
@@ -584,7 +616,7 @@ class MyService {
 
 
 
-### The scandal of Inline Critical CSS
+### The "scandal" of Inline Critical CSS
 <img src="images/goosebump-cpu-overflow.jpeg" style="max-height:50vh"/>
 
 
@@ -633,13 +665,22 @@ class MyService {
 <img src="schemas/critters-viewport-big-dom.svg" />
 
 
-#### solutions
+#### Solutions
 
 
 ##### Quick and dirty fix
 - do not inline critical css
-```
+
+
+`server.ts`
+```diff
 // how to disable
+```
+
+
+`angular.json`
+```diff 
+
 ```
 
 

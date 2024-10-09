@@ -12,7 +12,7 @@
 // ---------------------------------------------
 
 // Include theme-specific fonts
-@import url("https://fonts.bunny.net/css2?family=Poppins:wght@300,700&family=Source+Sans+Pro&display=swap");
+@import url("https://fonts.bunny.net/css2?family=Poppins:wght@300,400,700&family=Source+Sans+Pro&display=swap");
 
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: $base;
@@ -20,12 +20,12 @@ $backgroundColor: $base;
 $mainColor: #bac2de;
 $headingColor: #cdd6f4;
 
-$mainFontSize: 42px;
+$mainFontSize: 36px;
 $mainFont: "Arial", Helvetica, sans-serif;
 $headingFont: "Poppins", Helvetica, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
-$headingTextTransform: normal;
+$headingTextTransform: uppercase;
 $headingFontWeight: 600;
 $linkColor: #89dceb;
 $linkColorHover: lighten($linkColor, 15%);
@@ -49,7 +49,8 @@ iframe {
 
 @import "@catppuccin/highlightjs/sass/catppuccin-mocha.scss";
 
-.code-wrapper code {
+.code-wrapper code,
+code {
   background-color: $crust;
 }
 
@@ -58,4 +59,27 @@ iframe {
   flex-direction: row;
   justify-content: space-between;
   align-items: cenArial
+}
+
+:root {
+  --spinner-animation-speed: 1s;
+  --rotate-animation-speed: 3s;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin var(--spinner-animation-speed) linear infinite;
+}
+
+.rotate {
+  animation: spin var(--rotate-animation-speed) linear infinite;
 }

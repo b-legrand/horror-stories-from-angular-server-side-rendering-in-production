@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1280"
+   height="720"
+   viewBox="0 0 1280 720"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="client-server-base.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="0.78127806"
+     inkscape:cx="602.21837"
+     inkscape:cy="408.30533"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg5">
+    <inkscape:grid
+       type="xygrid"
+       id="grid238" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <rect
+     style="fill:#1e1e2e;stroke-width:7.55906;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10"
+     id="background"
+     width="1280"
+     height="720"
+     x="0"
+     y="0"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1" />
+  <rect
+     style="fill:#11111b;stroke:#cdd6f4;stroke-width:3;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none"
+     id="rect455"
+     width="203.27705"
+     height="85.16053"
+     x="60.485004"
+     y="42.787769" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins;fill:#cdd6f4;stroke:none"
+     x="117.2558"
+     y="94.776596"
+     id="text2144"><tspan
+       sodipodi:role="line"
+       id="tspan2142"
+       x="117.2558"
+       y="94.776596">CLIENT</tspan></text>
+  <rect
+     style="fill:#11111b;stroke:#cdd6f4;stroke-width:3;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none"
+     id="rect455-6"
+     width="203.27705"
+     height="85.16053"
+     x="1014.4164"
+     y="43.296646" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins;fill:#cdd6f4;stroke:none"
+     x="1071.1873"
+     y="95.285484"
+     id="text2144-2"><tspan
+       sodipodi:role="line"
+       id="tspan2142-9"
+       x="1071.1873"
+       y="95.285484">SERVER</tspan></text>
+  <path
+     style="fill:none;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+     d="M 151.47456,127.37042 V 665.97608"
+     id="path2278" />
+  <path
+     style="fill:none;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+     d="M 1114.875,128.97287 V 667.57853"
+     id="path2278-1" />
+</svg>
