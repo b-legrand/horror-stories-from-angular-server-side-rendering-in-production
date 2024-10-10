@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="transfer-state-without.svg"
+   sodipodi:docname="transfer-state-with-it-enabled.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@
      inkscape:document-units="px"
      showgrid="true"
      inkscape:zoom="0.78127806"
-     inkscape:cx="636.77713"
+     inkscape:cx="636.13715"
      inkscape:cy="417.90499"
      inkscape:window-width="1900"
      inkscape:window-height="1025"
@@ -39,26 +39,6 @@
   </sodipodi:namedview>
   <defs
      id="defs2">
-    <marker
-       style="overflow:visible"
-       id="marker3014"
-       refX="0"
-       refY="0"
-       orient="auto-start-reverse"
-       inkscape:stockid="Arrow3"
-       markerWidth="4.2071066"
-       markerHeight="6.9999995"
-       viewBox="0 0 4.2071068 7"
-       inkscape:isstock="true"
-       inkscape:collect="always"
-       preserveAspectRatio="xMidYMid">
-      <path
-         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:round"
-         d="M 3,-3 0,0 3,3"
-         id="path3012"
-         transform="rotate(180,0.125,0)"
-         sodipodi:nodetypes="ccc" />
-    </marker>
     <marker
        style="overflow:visible"
        id="Arrow3"
@@ -353,23 +333,17 @@
   <text
      xml:space="preserve"
      style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
-     x="537.24451"
-     y="537.36438"
+     x="190.10197"
+     y="539.83929"
      id="text2996-8-4"><tspan
        sodipodi:role="line"
        id="tspan2994-4-9"
-       x="537.24451"
-       y="537.36438"
+       x="190.10197"
+       y="539.83929"
        style="fill:#cdd6f4">GET /api/resource</tspan></text>
   <path
-     style="fill:#cdd6f4;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker3014);stroke-dasharray:none"
-     d="m 1100.2255,599.41847 -938.8513,3.04989"
-     id="path3004"
-     inkscape:connector-type="polyline"
-     inkscape:connector-curvature="0" />
-  <path
-     style="fill:#cdd6f4;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3014-8)"
-     d="M 168.58472,560.22668 1096.5514,559.5417"
+     style="fill:none;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3014-8)"
+     d="m 168.58472,560.22668 c 78.55003,22.15978 64.47783,56.8405 1.77495,75.19229"
      id="path3004-8"
      inkscape:connector-type="polyline"
      inkscape:connector-curvature="0"
@@ -397,7 +371,7 @@
      sodipodi:nodetypes="cc" />
   <path
      style="fill:none;fill-rule:evenodd;stroke:#a6e3a1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3014-7-3-6-5)"
-     d="m 134.93386,479.39 c -47.811144,22.28512 -50.699131,44.1207 -1.25999,65.43265"
+     d="m 134.93386,479.39 -1.25999,65.43265"
      id="path3004-4-7-9-4"
      inkscape:connector-type="polyline"
      inkscape:connector-curvature="0"
@@ -415,23 +389,13 @@
   <text
      xml:space="preserve"
      style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins;fill:#cdd6f4"
-     x="605.14349"
-     y="587.2959"
-     id="text10035-3"><tspan
-       sodipodi:role="line"
-       id="tspan10033-1"
-       x="605.14349"
-       y="587.2959">{json}</tspan></text>
-  <text
-     xml:space="preserve"
-     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins;fill:#cdd6f4"
-     x="346.95779"
-     y="303.7511"
+     x="223.02727"
+     y="303.60114"
      id="text10035-2"><tspan
        sodipodi:role="line"
        id="tspan10033-0"
-       x="346.95779"
-       y="303.7511">&lt;html&gt;</tspan></text>
+       x="223.02727"
+       y="303.60114">&lt;html&gt; + {json} in the body</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
@@ -451,21 +415,28 @@
   <text
      xml:space="preserve"
      style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins;fill:#f38ba8"
-     x="944.59894"
-     y="383.51926"
+     x="925.25464"
+     y="603.95636"
      id="text10853-8"><tspan
        sodipodi:role="line"
-       x="944.59894"
-       y="383.51926"
+       x="925.25464"
+       y="603.95636"
        id="tspan10909-1"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';text-align:center;text-anchor:middle;fill:#f38ba8">SAME</tspan><tspan
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';text-align:center;text-anchor:middle;fill:#a6e3a1">NO DUPLICATED</tspan><tspan
        sodipodi:role="line"
-       x="944.59894"
-       y="416.85263"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';text-align:center;text-anchor:middle;fill:#f38ba8"
-       id="tspan11416">REQUEST</tspan></text>
-  <path
-     style="fill:none;stroke:#f38ba8;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker3014);marker-end:url(#marker3014);stroke-dasharray:none"
-     d="m 1024.4782,519.14635 -2.4449,-274.85012"
-     id="path10973" />
+       x="925.25464"
+       y="637.28973"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';text-align:center;text-anchor:middle;fill:#a6e3a1"
+       id="tspan11416">REQUESTS</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="234.58656"
+     y="616.10785"
+     id="text1104"><tspan
+       sodipodi:role="line"
+       id="tspan1102"
+       x="234.58656"
+       y="616.10785"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';fill:#a6e3a1">READ  RESULT FROM BODY</tspan></text>
 </svg>

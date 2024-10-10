@@ -77,8 +77,7 @@ SSR with Angular is a lot better now
 - But it is the process of creating the HTML of your app on the server side, before sending it to the client.
 
 
-#### By default, angular is a client side framework
-- "Single Page Application"
+#### By default, Angular is a client side framework
 <img src="schemas/intro-spa.svg" />
 ---
 - Angular is a client side framework, it means that the HTML is created on the client side, in the browser.
@@ -119,10 +118,10 @@ SSR with Angular is a lot better now
 
 #### Advantages of SSR
 
-- SEO ( Search Engine Optimization )
-- Performance ( faster loading times )<!-- .element: class="fragment" -->
-- Usability ( your site is usable before javascript is loaded )<!-- .element: class="fragment" -->
-- Universal / Isomorphic code ( same code on server and client )<!-- .element: class="fragment" -->
+- 🔎 SEO<br/>( Search Engine Optimization )
+- 🚀 Performance<br/>( faster loading times )<!-- .element: class="fragment" -->
+- ♿ Usability / accessibility<br/>( your site is usable before javascript is loaded )<!-- .element: class="fragment" -->
+- 🧑‍💻Universal / Isomorphic code<br/>( same code on server and client )<!-- .element: class="fragment" -->
 ---
 - Not really true for SEO anymore, search engines can index full JS and SPA apps.
 - the main advantage in my humble opinion is the performance and loading times.
@@ -230,9 +229,9 @@ ng add @angular/ssr
 
 #### Context ?
 
-- big project, 50+ Developers
-- lots of daily pull-requests
-- very fast code reviews...
+- 👥 Big project, 30+ Developers
+- 📚 Lots of daily pull-requests
+- ⚡ Very fast code reviews... <span class="fragment">maybe too fast</span>
 ---
 - code reviews were not very efficient
 
@@ -256,15 +255,16 @@ ng add @angular/ssr
 
 
 #### What happened ?
-- someone added a third-party library
-- that used the window object<!-- .element: class="fragment" -->
+- 👮 We add safe-guards about not using browser globals. but...
+- 📙 "Someone" added a third-party library<!-- .element: class="fragment" -->
+- 🪟 that used the window object<!-- .element: class="fragment" -->
 ---
 - we add safe-guards for the window objects
 
 
 #### What (really) happened.
-- Developers were not using the "SSR" devmode
-- "because it is slower"<!-- .element: class="fragment" -->
+- ♻️ Developers were not using the "SSR" devmode, only SPA
+- 🐌 "because it is slower"<!-- .element: class="fragment" -->
 ---
 - the real root cause
 - lessons learned : prioritize developer experience
@@ -425,9 +425,9 @@ export const config = mergeApplicationConfig(appConfig, serverConfig);
 
 
 #### Takeaways
-- always use the SSR dev mode
-- think about the two execution contexts
-- clearly separate code paths
+- ♻️ Always use the SSR dev mode<!-- .element: class="fragment" -->
+- 🧠 Think about the two execution contexts<!-- .element: class="fragment" -->
+- ✂️ Clearly separate code paths<!-- .element: class="fragment" -->
 ---
 Now let's talk about memory leaks...
 
@@ -439,12 +439,13 @@ Now let's talk about memory leaks...
 
 
 #### Context ?
-- huge project with 50+ developers
-- one production release per sprint
-- ~= 1 million daily page views.
+- 👥 Huge project with 50+ developers
+- 🚀 One production release per sprint<!-- .element: class="fragment" -->
+- 📈 ~= 1 million daily page views<!-- .element: class="fragment" -->
 
 
 #### Deployment metrics
+🤓
 ---
 - I'm gonna show some graphes, that i re-drew myself
 - cause at the time i was to dumb to take screenshots
@@ -469,7 +470,7 @@ In reality we had two virtual machines for.
 
 
 #### What was the root cause ?
-Someone pushed this code:
+Someone pushed this kind of code:
 
 ```typescript
 @Injectable({
@@ -484,36 +485,39 @@ export class MyService {
 }
 ```
 ---
-- Can you spot the issue ?
+- Can you spot the issues ?
 - no unsubscription
+- providedIn root
 
 
 #### What is the issue
-- the Observer pattern leaks
+- 🔭 the Observer pattern leaks
 <!-- TODO: schema / link between objects -->
 
 
 #### Other source of memory leaks
-- addEventListener()
+- addEventListener()<!-- .element: class="fragment" -->
 - removeEventListener()<!-- .element: class="fragment" -->
 
 
 #### Solutions ?
-- __always__ unsubscribe
-- do not use the constructor to initialize observables
-- use "init" methods instead
-- avoid `providedIn: root` when you can.
+- 👮 always unsubscribe / 🧹 cleanup behind you<!-- .element: class="fragment" -->
+- 🚫 do not use the constructor to initialize observables<!-- .element: class="fragment" -->
+- 👍 use "init" methods instead<!-- .element: class="fragment" -->
+- ⛔ avoid providedIn:root when you can<!-- .element: class="fragment" -->
 
 
 
 ### The setTimeout trap
 
-<img src="images/goosebump-worms.jpeg" style="max-height: 50vh" />
+<img src="images/goosebump-timeout.jpeg" style="max-height: 50vh" />
 
 
 #### Context ?
-- consulting on a new project
-- first task: "please fix the SSR performance"
+- 🏗️ Consulting on a "recent" project
+- 👶 First task: "please fix the SSR performance"
+---
+- project was new (6-8 months), and just went to production
 
 
 #### What was happening ?
@@ -523,7 +527,7 @@ export class MyService {
 
 
 #### What happened ?
-- investigating... 🕵️ 
+-  🕵️ investigating... 🕵️ 
 - found this code<!-- .element: class="fragment" -->
 ---
 - add logs, add performance metrics for every request.
@@ -590,7 +594,7 @@ This code was totally useless on the server
 
 ### Help, my API is requested twice.
 
-<img src="images/goosebump-worms.jpeg" style="max-height: 50vh" />
+<img src="images/goosebump-transfer-state-twice.jpeg" style="max-height: 50vh" />
 
 
 #### Context ?
@@ -599,8 +603,8 @@ This code was totally useless on the server
 
 
 #### What is the issue ?
-- new deployment.
-- put twice the load
+- 🚀 new deployment.
+- 🚚 put twice the load
 - cache the html render
 - but it is not he same client side
 
@@ -621,8 +625,8 @@ This code was totally useless on the server
 
 
 #### Context ? 
-- huge project, 50+ developers<!-- .element: class="fragment" -->
-- one production release per sprint<!-- .element: class="fragment" -->
+- 👥 huge project, 50+ developers<!-- .element: class="fragment" -->
+- 🚀 one production release per sprint<!-- .element: class="fragment" -->
 - 🥶 "code freeze" for 3 sprints during christmas 🎅<!-- .element: class="fragment" -->
 - = one HUGE release<!-- .element: class="fragment" -->
 
@@ -642,6 +646,16 @@ This code was totally useless on the server
 - and for EVERY REQUESTS, the response time was 300ms longer than before 
 - load balancing was doing its job, and started more and more VMs to handle the load
 
+
+#### Investigation
+- 🚑 git bisect ( ~= 700 commits )<!-- .element: class="fragment" -->
+- 🤔 what changed ? what are we looking for ?<!-- .element: class="fragment" -->
+- ⏱️ While we're looking, hosting the app costs... 💸<!-- .element: class="fragment" -->
+- 🎉 thanks to 0x, and the flamegraph<!-- .element: class="fragment" -->
+---
+- git bisect is a tool that helps you find the commit that introduced a bug
+- but we could not reproduce the heavy load on our local machines
+- then one day, we found the culprit, with the help of 0x
 
 
 #### What (really) happened ?
@@ -674,13 +688,39 @@ This code was totally useless on the server
 
 `server.ts`
 ```diff
-// how to disable
+    commonEngine
+      .render({
+        bootstrap,
+        documentFilePath: indexHtml,
+        url: `${protocol}://${headers.host}${originalUrl}`,
+        publicPath: distFolder,
++        inlineCriticalCss: false,
+        providers: [
+          { provide: APP_BASE_HREF, useValue: baseUrl },],
+      })
+      .then((html) => res.send(html))
+      .catch((err) => next(err));
 ```
 
 
 `angular.json`
 ```diff 
-
+{
+    // ...
+    "configurations": {
+        "production": {
+            "optimization": {
+                "fonts": true,
+                "scripts": true,
+                "styles": {
++                    "inlineCritical": false,
+                    "minify": true
+                }
+            }
+        },
+    },
+    // ...
+}
 ```
 
 
@@ -727,6 +767,8 @@ This code was totally useless on the server
 
 ### The Localization Hell
 
+<img src="images/goosebump-localization-hell.jpeg" style="max-height: 50vh"/>
+
 
 #### Context ?
 - multi-language app
@@ -751,6 +793,8 @@ solution 1 : multiple apps, multiples build
 
 
 ### Lighthouse said our Content layout shift is bad
+
+<img src="images/goosebump-spooky-stories.jpeg" style="max-height: 50vh"/>
 
 
 #### context
@@ -796,8 +840,8 @@ solution 1 : multiple apps, multiples build
 
 ## Conclusion
 
-- Should you still do server-side-rendering?
-- yes<!-- .element: class="fragment" -->
+- 🤔 Should you still do server-side-rendering?
+- Yes<!-- .element: class="fragment" -->
 ---
 - for performance, it is worth it
 - just know the traps and gotchas to avoid failures
@@ -817,13 +861,6 @@ solution 1 : multiple apps, multiples build
 
 ## Thank you
 
-<a href="https://openfeedback.io/2024-09-20-etech-day/2024-09-20/z0BhXl2GBSDXfjtd3s1U">
-  <img src="images/openfeedback-etech-day.png" />
-</a>
+<img src="images/ngde-logo.svg" />
 
 
-### 
-
-- slide code: attention à regrouper / faire suivre
-- typos: hydration / with / library
-- french in the slides

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg width="1280" height="720" viewBox="0 0 1280 720" version="1.1" id="svg5" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" sodipodi:docname="intro-spa.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+   <style>
+      * { transform-box: fill-box; } 
+      @keyframes spin {
+         from {
+            transform: rotate(0deg);
+         }
+
+         to {
+            transform: rotate(360deg);
+         }
+      }
+
+      .rotate {
+         transform-origin: center;
+         animation: spin 2s linear infinite;
+      }
+   </style>
+   <sodipodi:namedview id="namedview7" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:document-units="px" showgrid="true" inkscape:zoom="0.7108202" inkscape:cx="723.81173" inkscape:cy="268.00026" inkscape:window-width="1900" inkscape:window-height="1025" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="0" inkscape:current-layer="svg5">
+      <inkscape:grid type="xygrid" id="grid238" />
+   </sodipodi:namedview>
+   <defs id="defs2">
+      <marker style="overflow:visible" id="Arrow3" refX="0" refY="0" orient="auto-start-reverse" inkscape:stockid="Arrow3" markerWidth="4.2071066" markerHeight="6.9999995" viewBox="0 0 4.2071068 7" inkscape:isstock="true" inkscape:collect="always" preserveAspectRatio="xMidYMid">
+         <path style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:round" d="M 3,-3 0,0 3,3" id="arrow3" transform="rotate(180,0.125,0)" sodipodi:nodetypes="ccc" />
+      </marker>
+   </defs>
+   <rect style="fill:#1e1e2e;stroke-width:7.55906;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10" id="background" width="1280" height="720" x="0" y="0" sodipodi:insensitive="true" />
+   <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" />
+   <rect style="fill:#11111b;stroke:#cdd6f4;stroke-width:3;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none" id="rect455" width="309.28821" height="328.3768" x="72.424583" y="192.88239" />
+   <rect style="fill:#11111b;stroke:#cdd6f4;stroke-width:3;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none" id="rect455-7" width="309.28821" height="328.3768" x="486.81628" y="192.88239" />
+   <rect style="fill:#11111b;stroke:#cdd6f4;stroke-width:3;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none" id="rect455-7-2" width="309.28821" height="328.3768" x="901.20801" y="192.88239" />
+   <text xml:space="preserve" style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins" x="78.187195" y="159.73926" id="text11775">
+      <tspan sodipodi:role="line" id="tspan11773" x="78.187195" y="159.73926" style="fill:#cdd6f4;stroke:none">GET https://my-site.de</tspan>
+   </text>
+   <text xml:space="preserve" style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins" x="595.82983" y="162.16255" id="text11775-7">
+      <tspan sodipodi:role="line" x="595.82983" y="162.16255" style="fill:#cdd6f4;stroke:none" id="tspan12255">WAIT...</tspan>
+   </text>
+   <path style="fill:none;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow3)" d="m 381.72129,359.39709 103.09705,0.30713" id="path11777" inkscape:connector-type="polyline" inkscape:connector-curvature="0" sodipodi:nodetypes="cc" />
+   <path style="fill:none;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow3)" d="m 795.60142,357.15217 103.1205,0.17336" id="path12170" inkscape:connector-type="polyline" inkscape:connector-curvature="0" sodipodi:nodetypes="cc" />
+   <rect style="fill:none;stroke:#cdd6f4;stroke-width:3;stroke-dasharray:none" id="rect12259" width="262.71368" height="67.274834" x="927.61456" y="218.03047" />
+   <rect style="fill:none;stroke:#cdd6f4;stroke-width:3;stroke-dasharray:none" id="rect12259-2" width="172.66592" height="185.10747" x="927.46619" y="309.97971" />
+   <rect style="fill:none;stroke:#cdd6f4;stroke-width:3;stroke-dasharray:none" id="rect12259-2-6" width="73.281364" height="184.46449" x="1119.4374" y="310.78754" />
+   <text xml:space="preserve" style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins" x="1010.4501" y="167.51968" id="text11775-7-1">
+      <tspan sodipodi:role="line" x="1010.4501" y="167.51968" style="fill:#cdd6f4;stroke:none" id="tspan12255-0">READY !</tspan>
+   </text>
+   <path style="fill:none;stroke:#cdd6f4;stroke-width:6;stroke-dasharray:none" id="loader" sodipodi:type="arc" sodipodi:cx="640.45734" sodipodi:cy="359.5813" sodipodi:rx="40.050564" sodipodi:ry="40.050564" sodipodi:start="0" sodipodi:end="5.2324971" sodipodi:arc-type="arc" d="m 680.5079,359.5813 a 40.050564,40.050564 0 0 1 -29.65096,38.67681 40.050564,40.050564 0 0 1 -45.04941,-18.59102 40.050564,40.050564 0 0 1 6.25574,-48.33158 40.050564,40.050564 0 0 1 48.29815,-6.50871" sodipodi:open="true" class="rotate" />
+</svg>
