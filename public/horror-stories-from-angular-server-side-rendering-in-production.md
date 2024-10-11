@@ -9,14 +9,13 @@
 <img src="images/benjamin-legrand.png" style="max-height: 20vh; float:right;"/>
 
 - My name is [Benjamin Legrand](https://www.benjaminlegrand.net)
-- 🤓 Lead Dev / Software architect
-- 👔 work at [onepoint](https://www.onepoint.net)
+- 👔 Tech Lead @ [onepoint](https://www.onepoint.net)
 - 🌍 Nantes, France
 - [@benjilegnard](https://twitter.com/benjilegnard)
 ---
 - I'm french (sorry), so I apologize in advance for my accent.
 - I'm working for onepoint, we are a french consulting company, but with an eulisthic approach. 
-- You can find me on twitter / x.
+- You can find me on twitter / github / linkedin and other sites with the same username
 
 
 ## Introduction
@@ -24,7 +23,7 @@
 <img src="images/aging.gif">
 
 ---
-- I have been using angular since the AngularJS days, it is my framework of choice
+- I have been using angular since the AngularJS days, it is my favourite front-end framework
 - I worked on a lot of different projects through the years and some used server side rendering with Angular and some did'nt use it.
 - I wanted to share some of the horror stories I've seen.
 - From all the times we broke down production ( yes, it happens )
@@ -39,15 +38,15 @@
 ![](images/theyre-the-same-picture-3.jpeg)<!-- .element: class="fragment" style="max-height: 30vh" -->
 
 ---
-// image they're the same picture
+- they're the same picture
 - I'm gonna talk about server side rendering or universal, because it was the name of the library before.
 - But now it's called @angular/ssr and has been integrated into core. It's the same thing, just a different name.
-- Who here has used server side rendering with Angular ???
 
 
 ## Disclaimer #2
 
-SSR with Angular is a lot better now
+- This is not a diss talk
+- SSR with Angular is a lot better now
 ---
 - This is not a diss talk on Angular or SSR.
 - there has been a lot of improvements since.
@@ -65,6 +64,7 @@ SSR with Angular is a lot better now
 ---
 - i am gonna talk about these subjects, and share some horror stories i've seen in production
 - let's dive in, but first
+- Who here has used server side rendering with Angular ???
 
 
 
@@ -490,14 +490,23 @@ export class MyService {
 - providedIn root
 
 
-#### What is the issue
+#### What is the issue ?
 - 🔭 the Observer pattern leaks
-<!-- TODO: schema / link between objects -->
+<img src="schemas/leaks-observer.svg"/>
 
 
 #### Other source of memory leaks
 - addEventListener()<!-- .element: class="fragment" -->
 - removeEventListener()<!-- .element: class="fragment" -->
+---
+.those are not the only ones, but the most common.
+
+
+#### Second issue:
+- {providedIn:'root'}.<!-- .element: class="fragment" -->
+- means the service was instanciated for EVERY page.<!-- .element: class="fragment" -->
+---
+even though it was used only on one page
 
 
 #### Solutions ?
@@ -505,6 +514,11 @@ export class MyService {
 - 🚫 do not use the constructor to initialize observables<!-- .element: class="fragment" -->
 - 👍 use "init" methods instead<!-- .element: class="fragment" -->
 - ⛔ avoid providedIn:root when you can<!-- .element: class="fragment" -->
+---
+- use ngOnDestroy, takeUntil or untilDestroyed, subscribe closer to your components, not in services.
+- initialisation methods helps you to know who and when it is called
+- with a constructor, you do not really know explicitly when it is called: the framework does it for you
+- any thing that can be lazy loaded, deferred, instanciated later, should be.
 
 
 
@@ -569,15 +583,16 @@ class MyService {
 
 #### What was the issue ?
 - zone.js 🫠 
+- server render will wait for ApplicationRef.isStable()<!-- .element: class="fragment" -->
 - will wait for any callback / promise / microtask to finish<!-- .element: class="fragment" -->
 - artificial delays<!-- .element: class="fragment" -->
 
 
-#### Also
+#### Also:
 - There is no `window` on the server.
 - There is no `iframe` either.
 ---
-This code was totally useless on the server
+- This code was totally useless on the server
 
 
 #### Solutions
@@ -586,9 +601,9 @@ This code was totally useless on the server
 - condition them to run only in browser mode<!-- .element: class="fragment" -->
 
 
-#### Takeways 
-- be careful with timeouts and intervals
-- avoid artificially delaying the server response times.
+#### Takeaways 
+- ⚠️ be careful with timeouts and intervals.
+- 🤖 avoid artificially delaying the server response times.
 
 
 
@@ -598,20 +613,37 @@ This code was totally useless on the server
 
 
 #### Context ?
-- an app that fetches json data from an api to render 
+- an app that fetches json data from an api to render.
 - pretty standard stuff<!-- .element: class="fragment" -->
+- backend service already existed<!-- .element: class="fragment" -->
 
 
 #### What is the issue ?
 - 🚀 new deployment.
-- 🚚 put twice the load
+- 🚚 put twice the load on the backend.
+---
 - cache the html render
-- but it is not he same client side
+- but it is not he same client Side
 
 
-#### solution
-- transfer state to the rescue
-- how do I implement ?
+<img src="schemas/transfer-state-without.svg"/>
+
+
+#### Solution
+- TransferState<!-- .element: class="fragment" -->
+- HttpInterceptor using it<!-- .element: class="fragment" -->
+---
+- it is a key value store that is shared between the server and the client 
+- avoid useless requests
+- used in modern angular to transfer hydration state
+
+
+<img src="schemas/transfer-state-with-it-enabled.svg"/>
+
+
+#### Actually:
+- transfer state is now included with `provideServerRendering()`
+- you had to explicitly enable it before<!-- .element: class="fragment" -->
 
 
 #### Takeaways
@@ -659,8 +691,8 @@ This code was totally useless on the server
 
 
 #### What (really) happened ?
-- angular 12 upgrade was in the release<!-- .element: class="fragment" -->
-- inline critical css "feature" was enabled by default<!-- .element: class="fragment" -->
+- Angular 12 upgrade was in the release<!-- .element: class="fragment" -->
+- inlineCriticalCss feature was enabled by default<!-- .element: class="fragment" -->
 
 
 #### What is critters ?
@@ -726,15 +758,43 @@ This code was totally useless on the server
 
 ##### A better solution
 
-- use critter comments
+- use critter comments in HTML
 ```HTML
-<!-- critters:ignore -->
+<html>
+  <body>
+    <div class="container">
+      <div data-critters-container>
+        /* HTML inside this container are used to evaluate critical CSS */
+      </div>
+      /* HTML is ignored when evaluating critical CSS */
+    </div>
+    <footer></footer>
+  </body>
+</html>
+```
+
+
+- or in CSS
+```css
+/* critters:exclude start */
+
+.selector1 {
+  /* this rule will be excluded from critical CSS */
+}
+
+.selector2 {
+  /* this rule will be excluded from critical CSS */
+}
+
+/* critters:exclude end */
 ```
 
 
 #### takeaways
-- avoid big releases
-- release early, release often
+- 🚚 avoid big releases
+- 📆 release early, release often
+- 📦 load testing is important
+- 🤓 read the changelogs.
 
 
 
@@ -792,7 +852,7 @@ solution 1 : multiple apps, multiples build
 
 
 
-### Lighthouse said our Content layout shift is bad
+### Lighthouse said our Core Web Vitals are bad.
 
 <img src="images/goosebump-spooky-stories.jpeg" style="max-height: 50vh"/>
 
@@ -817,7 +877,7 @@ solution 1 : multiple apps, multiples build
 
 
 
-### Hydration ? not with this framework
+### Hydration ? not yet. 
 
 <img src="images/goosebump-hydration.jpeg" style="max-height: 50vh"/>
 
@@ -861,6 +921,9 @@ solution 1 : multiple apps, multiples build
 
 ## Thank you
 
-<img src="images/ngde-logo.svg" />
+<img src="images/ngde-logo.svg"  style="max-height:40vh;"/>
 
-
+@benjilegnard
+---
+- Thank you for listening
+- If you need to scream at me... I'm on twitter.
