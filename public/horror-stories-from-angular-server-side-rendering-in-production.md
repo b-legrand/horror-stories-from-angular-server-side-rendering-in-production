@@ -881,6 +881,106 @@ Issue, we had pages with HUGE DOM, so critters spent a lot of time parsing it, a
 
 
 
+### The invisible infrastructure
+
+<img src="images/goosebump-the-invisible-infrastructure.jpeg" style="max-height: 50vh"/>
+
+
+#### Context ?
+
+- Again, I was asked to "fix the SSR" on a project
+
+
+- This was their architecture ( //todo schema )
+
+
+#### What is the issue ?
+
+= server side renderer always failed
+
+
+#### Solutions:
+- alerts and observability
+- do not run your code without logs
+- spa fallback is a good idea but:
+- do not hide the errors
+- a 500 error should NEVER happen
+
+
+
+### The Localization Hell
+
+<img src="images/goosebump-localization-hell.jpeg" style="max-height: 50vh"/>
+
+
+#### Context ?
+- multi-language app
+- multi-country apps
+- O(n) problem
+
+
+#### What is the issue ?
+- build times
+- deployment times
+
+
+#### solutions 
+
+- dynamic lang, do not build an app per multi-language
+
+solution 1 : multiple apps, multiples build
+- beware of the locale problem
+- better solution : Accept-Language header 
+- do not mix server lang source and browser lang sources 
+
+
+
+### Our Core Web Vitals are bad.
+
+<img src="images/goosebump-spooky-stories.jpeg" style="max-height: 50vh"/>
+
+
+#### context
+  - let's say we have a banner, you don't want it 
+  -
+
+
+#### what happened / the problem
+  - now on loading
+
+
+#### explaination
+- what is content layout shift
+
+
+#### solutions
+  - do not use local storage to store persistent page state.
+  - use query params or cookies
+  - take the cookies into consideration in the cache key
+
+
+
+### Hydration ? not yet. 
+
+<img src="images/goosebump-hydration.jpeg" style="max-height: 50vh"/>
+
+
+#### context
+- hydratation ?
+
+
+#### the problem:
+- big loading time
+- page was emptied / re-rendered
+- huge cpu spike
+
+
+#### solutions
+- preboot library
+- angular 16 to the rescue
+
+
+
 ## Conclusion
 
 - 🤔 Should you still do server-side-rendering?
