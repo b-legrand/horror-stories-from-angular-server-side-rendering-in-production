@@ -69,24 +69,30 @@
 
 
 ### What is Server Side Rendering ?
+---
+- Note: I will include pre-rendering in these definitions.
 
 
 #### "rendering" = creating HTML
 ---
 - I know we are abusing the term. It is not about 3D graphics or video.
-- But it is the process of creating the HTML of your app on the server side, before sending it to the client.
+- Don't tell game developers about this rendering, they'll laugh at you.
+- In our context, it is the process of creating the HTML of your app on the server side, before sending it to the client.
 
 
 #### By default, Angular is a client side framework
 <img src="schemas/intro-spa.svg" />
 ---
-- Angular is a client side framework, it means that the HTML is created on the client side, in the browser.
-- if you do nothing
+- if you do nothing, by default, angular generates a single page app
+- client side means that the HTML is created in the browser.
 
 
 #### SPA : ask the server for a page
 
 <img src="schemas/intro-client-side-rendering.svg"/>
+---
+- you just need "dumb" servers : simple static files hosting
+- in apache httpd or nginx for example.
 
 
 #### SPA : you get nothing.
@@ -106,7 +112,7 @@
 </html>
 ```
 ---
-- You got an empty page, and only once main.js is loaded, the content of <app-root> will be created
+- You got an empty page, and only once main.js is loaded, the content of \<app-root\> will be created
 
 
 #### SSR : ask the server for the HTML
@@ -126,18 +132,19 @@
 ---
 - Not really true for SEO anymore, search engines can index full JS and SPA apps.
 - the main advantage in my humble opinion is the performance and loading times.
-- the HTML is generated on server side and can be cached. 
-- So you do not need to wait for the javascript to load to see the content.
-- Write once, run anywhere
+- And you do not need javascript to load to use the site and see contents
+- Same codebase and templates for client and server, write once, run anywhere, remember JSP? PHP?
 
 
-#### Inconvenients of SSR
-- not for every app.<!-- .element: class="fragment" -->
+#### Drawbacks of SSR
+- not for every app/site.<!-- .element: class="fragment" -->
 - can be tricky, has some footguns.<!-- .element: class="fragment" -->
 - paradigm change, not your typical SPA<!-- .element: class="fragment" -->
 ---
-- If you have a loat of forms, and multi-step processses, and client side apis accesses... you might not want to use SSR.
-- for simple content websites, it is great
+- If you have a loat of forms, or multi-step processses, and client side apis accesses... 
+- you might not want to use SSR.
+- same thing if all your site is private or behind authentification.
+- for simple content websites that are PUBLIC, it is great.
 
 
 #### Two execution contexts
@@ -156,9 +163,9 @@ Node.js is based on the V8 engine, the same engine that powers Chrome. But runni
 | - | - |
 | window, navigator, geolocation, device, etc... | file system, network, OS APIs, etc... |
 ---
-- On the browser side you will have acess to API that are not available on the server, and vice-versa
+- On the browser side you will have access to APIs that are not available on the server, and vice-versa
 - window, document, navigator, geolocation, device => browser only
-- server side, you have access to the filesystem, databases, network, etc.
+- server side, you have access to the filesystem, databases, network, operating system of your server, etc.
 
 
 #### How to add SSR to your Angular app
@@ -185,6 +192,7 @@ ng add @angular/ssr
  └── tsconfig.app.json
 ```
 ---
+- this is the default SPA common files that you have in an angular project
 
 
 ##### After
@@ -203,8 +211,9 @@ ng add @angular/ssr
 +└── tsconfig.server.json
 ```
 ---
-- you will have two entry points, one for the browser, one for the server
-- and a specific tsconfig for the server
+- with SSR, you will now have two entry points, one for the browser, one for the server
+- a specific app.config.server.ts file
+- and a also, a specific tsconfig for the server
 
 
 ```no-highlight
@@ -218,8 +227,8 @@ ng add @angular/ssr
         └── main.js
 ```
 ---
-- Your app will be build for the two context
-- now that I have explained all this, let's dive into the horror stories.
+- ... because your app will be built for the two contexts.
+- now that I have explained all this, let's dive into the spooky stories.
 
 
 
@@ -234,6 +243,8 @@ ng add @angular/ssr
 - 📚 Lots of daily pull-requests
 - ⚡ Very fast code reviews... <span class="fragment">maybe too fast</span>
 ---
+- i was technical manager on this project
+- so anything not working technically was my fault :D
 - code reviews were not very efficient
 
 
@@ -247,27 +258,36 @@ ng add @angular/ssr
 
 
 <img src="images/comics-undefined-one-dev.svg"/>
+---
+- Other developers come to my desk: we have a "window is undefined" error
+- Then others "The front-end is broken"
 
 
 <img src="images/comics-undefined-two-dev.svg"/>
+---
+- Everyone had the same message "window is undefined" displayed in the page contents instead of the website.
 
 
 <img src="images/comics-undefined-everyone.svg"/>
+---
+- pretty soon every one from the project is on my back, because they can't use the front-end
+- obviously we caught this before production but still, it was bad.
 
 
 #### What happened ?
-- 👮 We add safe-guards about not using browser globals. but...
+- 👮 We had safe-guards about not using browser globals. but...
 - 📙 "Someone" added a third-party library<!-- .element: class="fragment" -->
 - 🪟 that used the window object<!-- .element: class="fragment" -->
 ---
-- we add safe-guards for the window objects
+- we had safe-guards and things to check during code-reviews
+- but this was not enough
 
 
 #### What (really) happened.
 - ♻️ Developers were not using the "SSR" devmode, only SPA
 - 🐌 "because it is slower"<!-- .element: class="fragment" -->
 ---
-- the real root cause
+- the real root cause, there is always a deeper cause (look for fish bone analysis)
 - lessons learned : prioritize developer experience
 
 
@@ -293,8 +313,8 @@ export class WindowService {
 ---
 - The recommended solution from angular docs.
 - use the DOCUMENT token to get the window object
-- this not the real document, but a server implementation called domino.
-- this works when you are directly using window, but in our case we did not.
+- this not the real document, but a server implementation called domino, but it is good enough is most cases.
+- this works when you are directly using window, but in our case we did not. The third-party library was.
 
 
 ##### Quick and dirty fix
@@ -306,8 +326,8 @@ globalThis['window'] = {
 ```
 ---
 - This works if you were not the one calling window function directly
-- But you might need to have a lot of "mocked" properties for server.
-- Not your job to re-implement browser APIs
+- But you might need to have a lot of "fake" properties for server.
+- It is not your job to re-implement browser APIs.
 
 
 ##### A better solution
@@ -334,8 +354,9 @@ export class MyService {
 ```
 ---
 - setup a wrapper Service around the third-party library
-- condition your code with isPlatformBrowser/isPlatformServer
-- use injection tokens 
+- condition your code with __isPlatformBrowser__ / __isPlatformServer__
+- this is my favorite way, because you have clear code paths for the 2 contexts...
+- a better solution could be to use injection tokens, but before that. 
 
 
 ##### A very BAD solution
@@ -356,10 +377,9 @@ Please do not use `fileReplacements` for this
 }
 ```
 ---
-- this is an extract from the angular.json file
-- The replacement file is not compiled linted / tested with the rest of the application
-- fileReplacements are a way to replace a file in your build process
-- this means the "server" file are not compiled / tested with the rest of the application
+- this is an extract from the angular.json file of another project.
+- fileReplacements are a way to replace a file during your build process
+- It is bad because the replacement file is not compiled linted / tested / run in dev mode with the rest of the application
 
 
 ##### Another (good) solution
@@ -367,7 +387,9 @@ Please do not use `fileReplacements` for this
 <img src="schemas/inject-server-browser.svg" /> 
 ---
 - let's say i have a service that fetches assets, and i want to use a different implementation on server side and browser side.
-- to not make an HTTP request to load a file that is already in my assets folder
+- to not make an HTTP request to load a file that is already in my assets folder.
+- I wanted a different implementation on server side to avoid network access, and optimize performance.
+- so the server side use readFile from node.js and the browser side makes an HttpClient request.
 
 
 ##### Another (good) solution
@@ -382,6 +404,7 @@ export const ASSETS_FETCHER = new InjectionToken<
 ```
 ---
 - Since we cannot inject an interface directly, we need to use an InjectionToken
+- remember kids, typescript interfaces only exists in you mind.
 
 
 `app.config.ts`
@@ -398,6 +421,8 @@ export const appConfig: ApplicationConfig = {
     ]
 };
 ```
+---
+- here we provide the browser implementation inside _app.config.ts_
 
 
 `app.server.config.ts`
@@ -423,6 +448,8 @@ const serverConfig: ApplicationConfig = {
 
 export const config = mergeApplicationConfig(appConfig, serverConfig);
 ```
+---
+- and the server implementation in _app.server.config.ts_
 
 
 #### Takeaways
@@ -430,13 +457,19 @@ export const config = mergeApplicationConfig(appConfig, serverConfig);
 - 🧠 Think about the two execution contexts<!-- .element: class="fragment" -->
 - ✂️ Clearly separate code paths<!-- .element: class="fragment" -->
 ---
-Now let's talk about memory leaks...
+- Now let's talk about memory leaks...
 
 
 
 ### Oups... a memory leak
 
 <img src="images/goosebump-a-memory-leak.jpeg" style="max-height: 50vh"/>
+---
+- Our next story is about memory leaks
+- It is sad that we often miss this in front-end world.
+- Thanks to garbage collection
+- "Just close the tab bro", "Just restart your browser"
+- You can't be that careless on the server.
 
 
 #### Context ?
@@ -448,26 +481,29 @@ Now let's talk about memory leaks...
 #### Deployment metrics
 🤓
 ---
-- I'm gonna show some graphes, that i re-drew myself
-- cause at the time i was to dumb to take screenshots
+- I'm gonna show some graphes, that I re-drew myself
+- Because at the time, I was to dumb to take screenshots
 
 
 <img src="schemas/perf-obs-normal-deploy.svg"/>
 ---
-This was how we deployed "normally", when everything was fine.
+- This was how we deployed "normally", when everything was fine.
+- Old VM stops to the left, New VM's starts to the right.
 
 
 <img src="schemas/perf-obs-normal-deploy-2vm.svg"/>
 ---
-In reality we had two virtual machines for.
+In reality we had (on average) two virtual machines, so this looked more like this.
 
 
 #### What happened ?
 
 <img src="schemas/perf-obs-out-of-memory.svg"/>
 ---
-- we released a new version and BOOM.
+- we deployed a new version and BOOM.
+- you can see memory always going up. Until it reaches the limit, and crashes, then another VM starts.
 - this, kids, is a memory leak
+- meanwhile, CPU is used to try to free memory instead of answering requests, worse, some requests are not answered.
 
 
 #### What was the root cause ?
@@ -487,27 +523,32 @@ export class MyService {
 ```
 ---
 - Can you spot the issues ?
-- no unsubscription
-- providedIn root
+- 1. no unsubscription
+- 2. providedIn root
 
 
 #### What is the issue ?
 - 🔭 the Observer pattern leaks
 <img src="schemas/leaks-observer.svg"/>
+---
+- when two functions / object know about each other.
+- the garbage collection can't identify them to remove them from memory.
+- and they stay here event after the requests ends.
 
 
 #### Other source of memory leaks
 - addEventListener()<!-- .element: class="fragment" -->
 - removeEventListener()<!-- .element: class="fragment" -->
 ---
-.those are not the only ones, but the most common.
+- rjxs is not the only one to blame for memory leaks,
+- also event listeneres are not the only one way to leak, but the most common.
 
 
 #### Second issue:
 - {providedIn:'root'}.<!-- .element: class="fragment" -->
 - means the service was instanciated for EVERY page.<!-- .element: class="fragment" -->
 ---
-even though it was used only on one page
+- even though it was used only on one page
 
 
 #### Solutions ?
@@ -516,8 +557,8 @@ even though it was used only on one page
 - 👍 use "init" methods instead<!-- .element: class="fragment" -->
 - ⛔ avoid providedIn:root when you can<!-- .element: class="fragment" -->
 ---
-- use ngOnDestroy, takeUntil or untilDestroyed, subscribe closer to your components, not in services.
-- initialisation methods helps you to know who and when it is called
+- use ngOnDestroy, takeUntil or untilDestroyed, and subscribe closer to your components templates, not in services.
+- initialisation methods helps you to know who and when called the method
 - with a constructor, you do not really know explicitly when it is called: the framework does it for you
 - any thing that can be lazy loaded, deferred, instanciated later, should be.
 
@@ -545,7 +586,9 @@ even though it was used only on one page
 -  🕵️ investigating... 🕵️ 
 - found this code<!-- .element: class="fragment" -->
 ---
-- add logs, add performance metrics for every request.
+- first things I did, add logs, add performance metrics for every request.
+- http requests made on the server where fast, no issue there.
+- still 10 seconds to render a page
 
 
 ```typescript [|3|4-6|9-25]
@@ -577,9 +620,10 @@ class MyService {
 }
 ```
 ---
-- first suspition: retry + sleep, this smells bad
+- first suspicious code: retry + sleep, this smells bad
 - and then what was retried ? a communication system with an iframe
-- this method was called on an APP_INITIALIZER, so it was blocking the app initialization for every request
+- this method was called on an __APP_INITIALIZER__, so it was blocking the app initialization for every request.
+- until an iframe responded... not. so we were retrying 4 times * 2 + the 2 seconds initial wait. There it is.
 
 
 #### What was the issue ?
@@ -587,6 +631,8 @@ class MyService {
 - server render will wait for ApplicationRef.isStable()<!-- .element: class="fragment" -->
 - will wait for any callback / promise / microtask to finish<!-- .element: class="fragment" -->
 - artificial delays<!-- .element: class="fragment" -->
+---
+- app stability is important. Do not start timers if not needed.
 
 
 #### Also:
@@ -622,20 +668,21 @@ class MyService {
 #### What is the issue ?
 - 🚀 new deployment.
 - 🚚 put twice the load on the backend.
----
-- cache the html render
-- but it is not he same client Side
 
 
 <img src="schemas/transfer-state-without.svg"/>
+---
+- what happened was a request made for server side rendering
+- was made again on the client browser.
 
 
 #### Solution
 - TransferState<!-- .element: class="fragment" -->
 - HttpInterceptor using it<!-- .element: class="fragment" -->
 ---
+- Angular / nguniversal had solutions for that issue : the TransferState
 - it is a key value store that is shared between the server and the client 
-- avoid useless requests
+- it helps avoid useless requests
 - used in modern angular to transfer hydration state
 
 
@@ -657,10 +704,12 @@ class MyService {
 ```
 ---
 - the transfer state is a script tag in the html. 
-- the angular HTtpClient will use it on.
+- the angular HttpClient will use it to get results if they exists in there.
 
 
 <img src="schemas/transfer-state-with-it-enabled.svg"/>
+---
+- there it is, problem solved
 
 
 #### Actually:
@@ -669,9 +718,11 @@ class MyService {
 
 
 #### Takeaways
-- 🧠think about the cacheability of your data
 - 🧑‍🤝‍🧑two execution contexts, two requests
-
+- 🧠think about the cacheability of your data
+---
+- The transfer state is good for performance.
+- But can be tricky if you have cache and need to have up-to-date data.
 
 
 ### The "scandal" of Inline Critical CSS
@@ -683,6 +734,8 @@ class MyService {
 - 🚀 one production release per sprint<!-- .element: class="fragment" -->
 - 🥶 "code freeze" for 3 sprints during christmas 🎅<!-- .element: class="fragment" -->
 - = one HUGE release<!-- .element: class="fragment" -->
+---
+- code freeze is not when you stop coding or adding features, it is when you stop deploying / releasing '-_-
 
 
 #### What happened ?
@@ -705,16 +758,17 @@ class MyService {
 - 🚑 git bisect ( ~= 700 commits )<!-- .element: class="fragment" -->
 - 🤔 what changed ? what are we looking for ?<!-- .element: class="fragment" -->
 - ⏱️ While we're looking, hosting the app costs... 💸<!-- .element: class="fragment" -->
-- 🎉 thanks to 0x, and the flamegraph<!-- .element: class="fragment" -->
+- 🎉 thanks to [0x](https://www.npmjs.com/package/0x), and the flamegraph<!-- .element: class="fragment" -->
 ---
 - git bisect is a tool that helps you find the commit that introduced a bug
-- but we could not reproduce the heavy load on our local machines
-- then one day, we found the culprit, with the help of 0x
+- but we could not really reproduce the heavy load on our local machines
+- then one day, we found the culprit, with the help of 0x, a flamegraph tool for node.js
+- a lot of traces mentioning "critters"
 
 
 #### What (really) happened ?
 - Angular 12 upgrade was in the release<!-- .element: class="fragment" -->
-- inlineCriticalCss feature was enabled by default<!-- .element: class="fragment" -->
+- `inlineCriticalCss` feature was enabled by default<!-- .element: class="fragment" -->
 
 
 #### What is critters ?
@@ -725,12 +779,19 @@ class MyService {
 
 
 <img src="schemas/critters-viewport.svg" />
+---
+- critters is supposed to help you enhance the critical CSS performance.
+- what is critical CSS
 
 
 <img src="schemas/critters-viewport-the-fold.svg" />
+---
+- It is the most important CSS of your page, the one that is visible first
 
 
 <img src="schemas/critters-viewport-big-dom.svg" />
+---
+Issue, we had pages with HUGE DOM, so critters spent a lot of time parsing it, and it was not even critical.
 
 
 #### Solutions
