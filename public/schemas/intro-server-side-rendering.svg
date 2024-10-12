@@ -67,9 +67,9 @@
      inkscape:document-units="px"
      showgrid="true"
      inkscape:zoom="0.78127806"
-     inkscape:cx="365.42688"
-     inkscape:cy="397.42573"
-     inkscape:window-width="1005"
+     inkscape:cx="607.97816"
+     inkscape:cy="398.70568"
+     inkscape:window-width="1900"
      inkscape:window-height="1025"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -301,14 +301,14 @@
        style="fill:#cdd6f4">GET /page-path/</tspan></text>
   <path
      style="display:inline;fill:none;fill-rule:evenodd;stroke:#fab387;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4425)"
-     d="m 1094.9957,213.36234 c -65.8529,32.62446 -82.6087,66.11731 -0.355,101.36136"
+     d="m 1094.9957,213.36234 c -65.0329,31.35282 -86.1607,64.35209 -0.355,101.36136"
      id="path4008"
      inkscape:connector-type="polyline"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cc" />
   <path
      style="display:inline;fill:none;fill-rule:evenodd;stroke:#cba6f7;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4425-5)"
-     d="m 179.64464,494.85664 c 76.17594,49.21912 50.42669,77.82189 -0.355,101.36137"
+     d="m 179.64464,494.85664 c 72.27505,35.81638 63.28439,69.3548 -0.355,101.36137"
      id="path4008-9"
      inkscape:connector-type="polyline"
      inkscape:connector-curvature="0"
@@ -381,4 +381,15 @@
        x="472.24597"
        y="467.31689"
        style="fill:#cdd6f4">GET /*.js , /*.css</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="408.27036"
+     y="326.73328"
+     id="text418"><tspan
+       sodipodi:role="line"
+       id="tspan416"
+       x="408.27036"
+       y="326.73328"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';fill:#89b4fa">FULL HTML PAGE ( with body rendered )</tspan></text>
 </svg>

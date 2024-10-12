@@ -89,16 +89,17 @@
 <img src="schemas/intro-client-side-rendering.svg"/>
 
 
+#### SPA : you get nothing.
 ```html 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My App</title>
+  <title>My Single Page App</title>
 </head>
 <body>
   <app-root>
-    <!-- NOTHING HERE -->
+    <!-- NOTHING HERE, (or maybe, a loader?) -->
   </app-root>
   <script src="main.js"></script>
 </body>
@@ -638,17 +639,38 @@ class MyService {
 - used in modern angular to transfer hydration state
 
 
+#### Transfer What ?
+```html 
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- ... -->
+    <script id="ng-state">
+        {
+                "http://api.domain.de/resource": {
+                    "data": {/** ... */}
+                }
+        }
+    </script>
+  </body>
+</html>
+```
+---
+- the transfer state is a script tag in the html. 
+- the angular HTtpClient will use it on.
+
+
 <img src="schemas/transfer-state-with-it-enabled.svg"/>
 
 
 #### Actually:
-- transfer state is now included with `provideServerRendering()`
+- transfer state is now included by default with `provideServerRendering()`
 - you had to explicitly enable it before<!-- .element: class="fragment" -->
 
 
 #### Takeaways
-- think about the cacheability of your data
-- two execution contexts, two requests
+- 🧠think about the cacheability of your data
+- 🧑‍🤝‍🧑two execution contexts, two requests
 
 
 
@@ -852,7 +874,7 @@ solution 1 : multiple apps, multiples build
 
 
 
-### Lighthouse said our Core Web Vitals are bad.
+### Our Core Web Vitals are bad.
 
 <img src="images/goosebump-spooky-stories.jpeg" style="max-height: 50vh"/>
 
