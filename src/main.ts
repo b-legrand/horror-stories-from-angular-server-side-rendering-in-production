@@ -20,4 +20,6 @@ deck.initialize({
   hash: true,
   transition: "none",
   history: true,
+  showNotes: true,
+  pdfSeparateFragments: false,
 });
