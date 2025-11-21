@@ -234,7 +234,7 @@ ng add @angular/ssr
 
 ### Window is undefined
 
-<img src="images/goosebump-window-is-undefined.jpeg" style="max-height: 60vh"/>
+<img src="images/goosebump-window-is-undefined.jpeg" style="max-height: 50vh"/>
 
 
 #### Context ?
@@ -599,9 +599,8 @@ class MyService {
     ms: number | undefined,
   ) => new Promise((r) => setTimeout(r, ms));
 
-    
   public async sendMessageEvent(message: string): Promise<Status> {
-  
+
 		let sendEventStatus = this.postMessageToIframe(message);
 
 		if (sendEventStatus !== "OK") {
@@ -694,7 +693,7 @@ class MyService {
     <!-- ... -->
     <script id="ng-state">
         {
-                "http://api.domain.de/resource": {
+                "http://api.domain.com/resource": {
                     "data": {/** ... */}
                 }
         }
@@ -874,10 +873,10 @@ Issue, we had pages with HUGE DOM, so critters spent a lot of time parsing it, a
 
 
 #### takeaways
-- 🚚 avoid big releases
-- 📆 release early, release often
-- 📦 load testing is important
-- 🤓 read the changelogs.
+- 🚚 Avoid big releases<!-- .element: class="fragment" -->
+- 📆 Release early, release often<!-- .element: class="fragment" -->
+- 📦 Load testing is important<!-- .element: class="fragment" -->
+- 🤓 Read the Angular changelogs.<!-- .element: class="fragment" -->
 
 
 
@@ -889,22 +888,22 @@ Issue, we had pages with HUGE DOM, so critters spent a lot of time parsing it, a
 #### Context ?
 
 - Again, I was asked to "fix the SSR" on a project
+- This was their architecture...
 
 
-- This was their architecture ( //todo schema )
+<img src="schemas/cloud-invisible-infra.svg" />
 
 
 #### What is the issue ?
-
-= server side renderer always failed
+- server side renderer ALWAYS failed<!-- .element: class="fragment" -->
 
 
 #### Solutions:
-- alerts and observability
-- do not run your code without logs
-- spa fallback is a good idea but:
-- do not hide the errors
-- a 500 error should NEVER happen
+- 🕵️ Alerts and observability<!-- .element: class="fragment" -->
+- Do not run your code without logs<!-- .element: class="fragment" -->
+- SPA fallback is a good idea but :<!-- .element: class="fragment" -->
+- DO NOT hide the errors<!-- .element: class="fragment" -->
+- A 500 error should NEVER happen<!-- .element: class="fragment" -->
 
 
 
@@ -914,24 +913,37 @@ Issue, we had pages with HUGE DOM, so critters spent a lot of time parsing it, a
 
 
 #### Context ?
-- multi-language app
-- multi-country apps
-- O(n) problem
+- 🗣️ Multi-language app<!-- .element: class="fragment" -->
+- 🌎 Multi-country app<!-- .element: class="fragment" -->
+- O(n) problem<!-- .element: class="fragment" -->
+---
+- main goal of the project was to add new 
 
 
-#### What is the issue ?
-- build times
-- deployment times
+#### What was the issue ?
+- 🅰️ngular native i18n builds an app per locale<!-- .element: class="fragment" -->
+- 🐢 build times (country x lang)<!-- .element: class="fragment" -->
+- 🐌 deployment times<!-- .element: class="fragment" -->
+---
+- locale is a couple of lang+country
 
 
-#### solutions 
+#### Solutions 
+- Build per locale, not per country + locale<!-- .element: class="fragment" -->
+- Dynamic lang, do not build an app per multi-language<!-- .element: class="fragment" -->
+- Use third party libs<!-- .element: class="fragment" -->
+  - @jsverse/transloco<!-- .element: class="fragment" -->
+  - ngx-translate<!-- .element: class="fragment" -->
+---
+- enhance build times
 
-- dynamic lang, do not build an app per multi-language
 
-solution 1 : multiple apps, multiples build
-- beware of the locale problem
+#### Don't reinvent the wheel
+- Accept-Language header
+---
 - better solution : Accept-Language header 
 - do not mix server lang source and browser lang sources 
+- learn the HTTP protocol
 
 
 
@@ -940,23 +952,34 @@ solution 1 : multiple apps, multiples build
 <img src="images/goosebump-spooky-stories.jpeg" style="max-height: 50vh"/>
 
 
-#### context
-  - let's say we have a banner, you don't want it 
-  -
+#### Core Web Vitals ?
+- LCP (Largest Content Paint)<!-- .element: class="fragment" -->
+- INP (Interaction to Next Paint)<!-- .element: class="fragment" -->
+- CLS (Cumulative Layout Shift)<!-- .element: class="fragment" -->
+---
+- metrics used by search engines
+- front-end performance
+- rendering / interactivity
+- used in page rank
 
 
-#### what happened / the problem
-  - now on loading
+#### Context
+- Let's say we have a "dismissable" banner<!-- .element: class="fragment" -->
+- Based on user cookies/localStorage<!-- .element: class="fragment" -->
+- But... Your server pages are cached<!-- .element: class="fragment" -->
 
 
-#### explaination
-- what is content layout shift
+#### What happened ? the problem :
+<img src="schemas/content-layout-shift.svg" />
+---
+- now on loading the page moves
+- CLS 
 
 
-#### solutions
-  - do not use local storage to store persistent page state.
-  - use query params or cookies
-  - take the cookies into consideration in the cache key
+#### Solutions
+- ⚠️ avoid using local storage (only) to store persistent page state.<!-- .element: class="fragment" -->
+- 🍪 use query params or cookies<!-- .element: class="fragment" -->
+- ❗ Take the cookies into consideration in the cache key<!-- .element: class="fragment" -->
 
 
 
@@ -967,18 +990,23 @@ solution 1 : multiple apps, multiples build
 
 #### context
 - hydratation ?
+---
+- Angular use to empty the dom completely
+- first render, then javascript comes in then the body
 
 
 #### the problem:
-- big loading time
-- page was emptied / re-rendered
-- huge cpu spike
+- big loading time<!-- .element: class="fragment" -->
+- page was emptied / re-rendered<!-- .element: class="fragment" -->
+- huge cpu spike<!-- .element: class="fragment" -->
+- INP metric : BAD<!-- .element: class="fragment" -->
 
 
 #### solutions
-- preboot library
-- angular 16 to the rescue
-
+- preboot library<!-- .element: class="fragment" -->
+- angular 16 hydration to the rescue<!-- .element: class="fragment" -->
+- provideClientHydration()<!-- .element: class="fragment" -->
+- withEventReplay()<!-- .element: class="fragment" -->
 
 
 ## Conclusion
@@ -1004,7 +1032,10 @@ solution 1 : multiple apps, multiples build
 
 ## Thank you
 
-<img src="images/ngde-logo.svg"  style="max-height:40vh;"/>
+<div style="display:flex; align-items:center; justify-content: space-between">
+    <img src="images/logo-devfest-paris.png"  style="max-height:180px;margin: 0;"/>
+    <img src="images/openfeedback-devfest-paris-2025.png" style="max-height:40vh;aspect-ratio: 1;margin:0;"/>
+</div>
 
 @benjilegnard
 ---
