@@ -7,6 +7,8 @@ Illustrations taken from the "goosebumps" series here : <https://imgur.com/galle
 
 Deployed version can be seen here : <https://b-legrand.github.io/horror-stories-from-angular-server-side-rendering-in-production/#/>
 
+Or PDF version here <https://b-legrand.github.io/horror-stories-from-angular-server-side-rendering-in-production/horror-stories-angular-ssr.pdf>
+
 ## Sources
 
 - The "gotchas" documentation where standard recommendations are : <https://github.com/angular/universal/blob/main/docs/gotchas.md>
